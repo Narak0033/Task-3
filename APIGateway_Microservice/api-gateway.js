@@ -46,8 +46,8 @@ app.use('/auth', (req, res) => {
     proxy.web(req, res, { target: AUTH_SERVICE });
 })
 
-app.use('/reg', (req, res) => {
-    proxy.web(req, res, { target: AUTH_SERVICE });
+app.use('/regis', (req, res) => {
+    proxy.web(req, res, { target: REG_SERVICE });
 })
 
 app.listen(4000, () => {
