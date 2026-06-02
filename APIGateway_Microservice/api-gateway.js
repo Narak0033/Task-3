@@ -30,6 +30,7 @@ function authRole(role) {
 const STUDENT_SERVICE  = 'http://STUDENT_EC2_PUBLIC_IP:5001';
 const TEACHER_SERVICE  = 'http://TEACHER_EC2_PUBLIC_IP:5002';
 const AUTH_SERVICE     = 'http://localhost:5003';
+const REG_SERVICE = 'http://localhost:5004';
 
 app.use('/student', authToken, authRole('student'), (req, res) => {
     console.log("INSIDE API GATEWAY STUDENT ROUTE")
@@ -42,6 +43,10 @@ app.use('/teacher', authToken, authRole('teacher'), (req, res) => {
 })
 
 app.use('/auth', (req, res) => {
+    proxy.web(req, res, { target: AUTH_SERVICE });
+})
+
+app.use('/reg', (req, res) => {
     proxy.web(req, res, { target: AUTH_SERVICE });
 })
 
